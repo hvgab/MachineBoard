@@ -1,0 +1,22 @@
+<h1>Agents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Agent</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  {% for agent in object_list %}
+  <tr>
+    <td>{{ agent.nickname }}</td>
+    <td>
+      <form class="" action="{% url 'sc-activate' %}" method="post">{%csrf_token%}
+        <input type="text" name="agent_id" value="{{agent.id}}" hidden=hidden>
+        <button type="submit" name="button">Submit</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>

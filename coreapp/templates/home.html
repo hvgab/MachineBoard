@@ -1,0 +1,45 @@
+{% load humanize %}
+<h1>MachineBoard</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Agent</th>
+      <th>Date</th>
+      <th>Sales</th>
+    </tr>
+  </thead>
+  {% for sc in salecount_list %}
+  <tr>
+    <td>{{ sc.agent.nickname }}</td>
+    <td>{{ sc.date|naturalday }}</td>
+    <td>{{ sc.salecount }}</td>
+    <td>
+      <!-- <form class="" action="{% url 'sc-change' %}" method="post">{%csrf_token%}
+        <input type="text" name="sc_id" value="{{sc.id}}" hidden=hidden>
+        <input type="text" name="updown" value="down">
+        <input type="text" name="next" value="{{ request.path }}" hidden=hidden>
+        <button type="submit" name="button">-</button>
+      </form>
+      <form class="" action="{% url 'sc-change' %}" method="post">{%csrf_token%}
+        <input type="text" name="sc_id" value="{{sc.id}}" hidden=hidden>
+        <input type="text" name="updown" value="up">
+        <input type="text" name="next" value="{{ request.path }}" hidden=hidden>
+        <button type="submit" name="button">+</button>
+      </form> -->
+      <form class="" action="{% url 'sc-decrement' %}" method="post">{%csrf_token%}
+        <input type="text" name="sc_id" value="{{sc.id}}" hidden=hidden>
+        <input type="text" name="next" value="{{ request.path }}" hidden=hidden>
+        <button type="submit" name="button">-</button>
+      </form>
+    </td>
+    <td>
+      <form class="" action="{% url 'sc-increment' %}" method="post">{%csrf_token%}
+        <input type="text" name="sc_id" value="{{sc.id}}" hidden=hidden>
+        <input type="text" name="next" value="{{ request.path }}" hidden=hidden>
+        <button type="submit" name="button">+</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
